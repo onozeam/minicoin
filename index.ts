@@ -1,3 +1,5 @@
+import express from "express";
+
 class Block {
   public index: number;
   public hash: string;
@@ -72,4 +74,6 @@ const genesisBlock: Block = new Block(
 
 const blockchain: Block[] = [genesisBlock];
 
-console.log("blockchain", blockchain);
+const app = express();
+app.get("/blocks", (_, res) => res.send(blockchain));
+app.listen(3003, () => console.log(`Listening http on port: ${3003}`));
